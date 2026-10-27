@@ -54,8 +54,16 @@ while running:
         if event.type == pg.QUIT:
                 running = False
         if event.type == pg.KEYDOWN: # on teste si l'évènement est une touche pressée
-             if event.key == pg.K_q:  # on teste si la touche est q
+            if event.key == pg.K_q:  # on teste si la touche est q
                 running = False
+            elif event.key == pg.K_UP:
+                DIRECTION = (0, -1) # il faut enlever 1 car l'axe des ordonnées est orienté vers le bas 
+            elif event.key == pg.K_DOWN:
+                DIRECTION = (0, 1)
+            elif event.key == pg.K_LEFT:
+                DIRECTION = (-1, 0)
+            elif event.key == pg.K_RIGHT:
+                DIRECTION = (1, 0)
     
     screen.fill((0,0,0))   #écran noir         
     
