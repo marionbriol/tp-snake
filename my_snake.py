@@ -5,6 +5,12 @@ pg.init()
 screen = pg.display.set_mode((600, 600))
 clock = pg.time.Clock()
 running = True #variable booléenne
+SNAKE = [
+   (10, 15),
+   (11, 15),
+   (12, 15),
+]
+
 
 def draw_board():
      x, y = 0, 0
@@ -21,7 +27,15 @@ def draw_board():
             pg.draw.rect(screen, color, rect)
             y += 40
         x += 20
-#  15*15 rectangles sont tracés         
+#  15*15 rectangles sont tracés    
+
+
+def draw_snake(snake):
+     for k in range(len(snake)-1):
+          start = (snake[k][0]*20,snake[k][1]*20)
+          end = (snake[k+1][0]*20,snake[k+1][1]*20)
+          pg.draw.line(screen, color=(255,0,0), start_pos=start, end_pos=end)
+          
 
 while running:
     clock.tick(1)
@@ -36,6 +50,7 @@ while running:
     screen.fill((0,0,0))   #écran noir         
     
     draw_board()
+    draw_snake(SNAKE)
     pg.display.update()
 
 pg.quit() #on ferme la fenêtre
