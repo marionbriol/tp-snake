@@ -10,6 +10,7 @@ SNAKE = [
    (11, 15),
    (12, 15),
 ]
+DIRECTION = (1, 0)   # vers la droite
 
 
 def draw_board():
@@ -35,10 +36,19 @@ def draw_snake(snake):
           start = (snake[k][0]*20,snake[k][1]*20)
           end = (snake[k+1][0]*20,snake[k+1][1]*20)
           pg.draw.line(screen, color=(255,0,0), start_pos=start, end_pos=end)
-          
+
+
+def move_snake(snake, direction):
+     snake.append((snake[2][0]+direction[0],snake[2][1]+direction[1]) )
+     snake.pop(0)
+     return snake
+
+assert move_snake([(10, 15), (11, 15), (12, 15)], (1, 0)) == [(11, 15), (12, 15), (13, 15)]
+assert move_snake([(10, 15), (11, 15), (12, 15)], (0, -1)) == [(11, 15), (12, 15), (12, 14)]
+
 
 while running:
-    clock.tick(1)
+    clock.tick(2)
 
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -51,6 +61,7 @@ while running:
     
     draw_board()
     draw_snake(SNAKE)
+    move_snake(SNAKE, DIRECTION) #Lorsque le serpent atteint le bord du cadre, il disparait de l'image
     pg.display.update()
 
 pg.quit() #on ferme la fenêtre
