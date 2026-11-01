@@ -64,6 +64,16 @@ assert score == 1 and len(snake) == 4
 score, snake, fruit = eat_fruit(0, [(10, 15), (11, 15), (12, 15)], (0, 0))
 assert score == 0 and len(snake) == 3 and fruit == (0, 0)
 
+def game_over(snake):
+    if snake[-1] in snake[:-1]:
+        police = pg.font.Font(None, 74)
+        text= police.render("GAME OVER !", True, (255, 0, 0))
+        screen.blit(text, (100, 200))
+        pg.display.flip()
+        pg.time.wait(2000)
+        return True
+    else:
+        pass
 
 while running:
     clock.tick(2)
@@ -90,6 +100,7 @@ while running:
     move_snake(SNAKE, DIRECTION) #Lorsque le serpent atteint le bord du cadre, il disparait de l'image
     eat_fruit(SCORE,SNAKE,FRUIT)
     draw_fruit(FRUIT)
+    game_over(SNAKE)
     pg.display.update()
 
 pg.quit() #on ferme la fenêtre
