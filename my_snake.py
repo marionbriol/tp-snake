@@ -101,6 +101,7 @@ while running:
     eat_fruit(SCORE,SNAKE,FRUIT)
     draw_fruit(FRUIT)
     game_over(SNAKE)
+    pg.display.set_caption(f"score: {SCORE}")
     pg.display.update()
 
 pg.quit() #on ferme la fenêtre
